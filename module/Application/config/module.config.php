@@ -23,6 +23,19 @@ return [
                         'action'     => 'index',
                     ],
                 ],
+
+            ],
+            'test' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/second',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'second',
+                    ],
+                ],
+
+
             ],
             'application' => [
                 'type'    => Segment::class,
@@ -57,4 +70,12 @@ return [
             __DIR__ . '/../view',
         ],
     ],
+
+'view_helpers' =>[
+    'factories'=>[ View\Helper\TrainingHelper::class =>InvokableFactory::class,
+],
+     'aliases' => [
+    'TrainingHelper' =>View\Helper\TrainingHelper::class
+        ]
+    ]
 ];
