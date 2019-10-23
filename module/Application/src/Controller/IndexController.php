@@ -8,6 +8,7 @@
 
 namespace Application\src\Entity\Training;
 namespace Application\Controller;
+use Doctrine\ORM\EntityNotFoundException;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Validator\Date;
 use Zend\View\Model\ViewModel;
@@ -18,23 +19,39 @@ use Application\Entity\Training;
 
 class IndexController extends AbstractActionController
 {
+    /**
+     * Entity manager.
+     * @var Doctrine\ORM\EntityManager
+     */
+
+    private $entityManager;
+
+    // Constructor method is used to inject dependencies to the controller.
+    public function __construct($entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+
 
     public function indexAction()
     {
 
 
+        $trainigs = $this->entityManager->getRepository(Training::class)
+            ->findall();
 
-        $nbr_student=3;
-        $stat_d=new \DateTime("2019-10-22");
-        $end_d=new \DateTime("2019-10-25");
-        $duration= $stat_d->diff($end_d)->days+1;
 
-        $trainig=new Training();
 
-        $trainig->setStartdate($stat_d);
-        $trainig->setEnddate($end_d);
-        $trainig->setDuration($duration);
-        $trainig->setNbr($nbr_student);
+
+
+
+//        $trainig=new Training();
+//
+//        $trainig->setStartdate($stat_d);
+//        $trainig->setEnddate($end_d);
+//        $trainig->setDuration($duration);
+//        $trainig->setNbr($nbr_student);
 
 
 
@@ -48,40 +65,50 @@ class IndexController extends AbstractActionController
 
 
 
-        return new ViewModel(['trainig'=>$trainig]);
+    return new ViewModel(['trainigs'=>$trainigs]);
+
+
 
 
 
     }
-    public function secondAction()
+
+    public function trainingAction()
     {
 
-        $nbr_student=3;
-        $stat_d=new \DateTime("2019-10-26");
-        $end_d=new \DateTime("2019-10-29");
-        $duration= $stat_d->diff($end_d)->days+1;
+        $id=$this->params()->fromRoute('id');
 
-        $trainig=new Training();
-
-        $trainig->setStartdate($stat_d);
-        $trainig->setEnddate($end_d);
-        $trainig->setDuration($duration);
-        $trainig->setNbr($nbr_student);
-
-
-
-
-
+//        $nbr_student=3;
+//        $stat_d=new \DateTime("2019-10-26");
+//        $end_d=new \DateTime("2019-10-29");
+//        $duration= $stat_d->diff($end_d)->days+1;
 //
+//        $trainig=new Training();
+//
+//        $trainig->setStartdate($stat_d);
+//        $trainig->setEnddate($end_d);
+//        $trainig->setDuration($duration);
+//        $trainig->setNbr($nbr_student);
+//
+//
+//
+$trainig = $this->entityManager->getRepository(Training::class)
+            ->find($id);
+if ($trainig==null)
+{
+    throw new EntityNotFoundException('NOT FOUND');
+}
+//
+////
+//
+//        $result=['nbr'=> $trainig->getNbr(),
+//            'duration'=>$trainig->getDuration(),
+//            'startd'=>$trainig->getStartdate(),
+//            'endd'=>$trainig->getEnddate()  ];
 
-        $result=['nbr'=> $trainig->getNbr(),
-            'duration'=>$trainig->getDuration(),
-            'startd'=>$trainig->getStartdate(),
-            'endd'=>$trainig->getEnddate()  ];
 
 
-
-        return new ViewModel(['res'=>$result]);
+        return new ViewModel(['trainig'=>$trainig]);
     }
 
 }

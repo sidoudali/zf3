@@ -2,19 +2,98 @@
 
 namespace  Application\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="training")
+ */
 class Training
 {
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(name="id")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="description")
+     */
+
+    private  $description;
+    /**
+     * @ORM\Column(name="title")
+     */
+    private  $title;
+    /**
+     * @ORM\Column(name="started_at",type="datetime")
+     */
     private  $startdate;
+    /**
+     * @ORM\Column(name="finished_at",type="datetime")
+     */
     private  $enddate;
-    private  $duration;
+
+
+
+    /**
+     * @ORM\Column(name="nb_students")
+     */
     private  $nbr;
+
+
+    private  $duration;
+
 
     /**
      * @return mixed
      */
-    public function getEnddate():\DateTime
+    public function getDescription():string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId():int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle():string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title): void
+    {
+        $this->title = $title;
+    }
+
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getEnddate()
     {
         return $this->enddate;
     }
@@ -30,7 +109,7 @@ class Training
     /**
      * @return mixed
      */
-    public function getDuration():int
+    public function getDuration()
     {
         return $this->duration;
     }
@@ -61,7 +140,7 @@ class Training
     /**
      * @return mixed
      */
-    public function getStartdate():\DateTime
+    public function getStartdate()
     {
         return $this->startdate;
     }
