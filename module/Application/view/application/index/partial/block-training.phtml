@@ -1,10 +1,11 @@
 <div>
-    Number of students:<?php echo $nbr; ?><br><br>
-    Duration :<?php echo $duration; ?><br><br>
-    start date:<?php echo $startd->format('d/m/y'); ?><br><br>
-    End date: <?php echo $endd->format('d/m/y'); ?><br><br>
+    Number of students:<?php echo $trainig->getNbr(); ?><br><br>
+    Duration :<?php $trainig->getDuration();  ?><br><br>
+    start date:<?php echo $trainig->getStartdate()->format('d/m/y'); ?><br><br>
+    End date: <?php echo $trainig->getEnddate()->format('d/m/y'); ?><br><br>
     état:<br><br>
-<?php    echo $this->TrainingHelper()->getstatus($startd,$endd);?>
+
+<?php    echo $this->TrainingHelper()->getstatus($trainig->getStartdate(),$trainig->getEnddate());?>
 
     <!--    <p><a class="btn btn-success pull-right" href="/second" target="_blank">next</a></p>-->
 

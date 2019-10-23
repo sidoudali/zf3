@@ -5,34 +5,50 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application\Controller;
 
-use phpDocumentor\Reflection\Types\Integer;
-use phpDocumentor\Reflection\Types\String_;
+namespace Application\src\Entity\Training;
+namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Validator\Date;
 use Zend\View\Model\ViewModel;
 
+
+
+use Application\Entity\Training;
+
 class IndexController extends AbstractActionController
 {
 
-
     public function indexAction()
     {
-        $nbr_student=2;
+
+
+
+        $nbr_student=3;
         $stat_d=new \DateTime("2019-10-22");
         $end_d=new \DateTime("2019-10-25");
         $duration= $stat_d->diff($end_d)->days+1;
+
+        $trainig=new Training();
+
+        $trainig->setStartdate($stat_d);
+        $trainig->setEnddate($end_d);
+        $trainig->setDuration($duration);
+        $trainig->setNbr($nbr_student);
+
 
 
 
 //
 
-        $result=['nbr'=> $nbr_student,'duration'=>$duration,'startd'=>$stat_d,'endd'=>$end_d  ];
+//        $result=['nbr'=> $trainig->getNbr(),
+//            'duration'=>$trainig->getDuration(),
+//            'startd'=>$trainig->getStartdate(),
+//            'endd'=>$trainig->getEnddate()  ];
 
 
 
-        return new ViewModel(['res'=>$result]);
+        return new ViewModel(['trainig'=>$trainig]);
 
 
 
@@ -44,7 +60,27 @@ class IndexController extends AbstractActionController
         $stat_d=new \DateTime("2019-10-26");
         $end_d=new \DateTime("2019-10-29");
         $duration= $stat_d->diff($end_d)->days+1;
-        $result=['nbr'=> $nbr_student,'duration'=>$duration,'startd'=>$stat_d,'endd'=>$end_d ];
+
+        $trainig=new Training();
+
+        $trainig->setStartdate($stat_d);
+        $trainig->setEnddate($end_d);
+        $trainig->setDuration($duration);
+        $trainig->setNbr($nbr_student);
+
+
+
+
+
+//
+
+        $result=['nbr'=> $trainig->getNbr(),
+            'duration'=>$trainig->getDuration(),
+            'startd'=>$trainig->getStartdate(),
+            'endd'=>$trainig->getEnddate()  ];
+
+
+
         return new ViewModel(['res'=>$result]);
     }
 
