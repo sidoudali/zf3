@@ -1,0 +1,28 @@
+<div class="jumbotron">
+
+    <p><a class="btn btn-success pull-right" href="<?php  echo $this->url('home'); ?>" >Acceil</a></p>
+
+
+    <?php
+
+    foreach ($student as $one )
+    {?>
+
+        <p>nom:  <?php  echo  $one->getNom();?></p>
+        <p>prenom:  <?php  echo  $one->getPrenom();?></p>
+        <p>nationalite: <?php  echo  $one->getPrenom();?></p>
+        mail:<?php  echo  $one->getMail();?></p>
+
+        <p>situation:  <?php  echo  $one->getSituation();?></p>
+        <p>date de naissance:<?php  echo  $one->getDateNaissance();?></p>
+
+        <p><?php  echo  $one->getRemarques();?></p>
+
+
+
+    <?php };?>
+
+    <!--    <p><a class="btn btn-success btn-lg" href="https://github.com/zendframework/zendframework" target="_blank">Fork Zend Framework on GitHub &raquo;</a></p>-->
+</div>
+
+

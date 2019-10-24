@@ -1,0 +1,20 @@
+
+<div class="jumbotron">
+
+    <p><a class="btn btn-success pull-right" href="<?php  echo $this->url('home'); ?>" >Acceil</a></p>
+    <p>liste des Formations: </p>
+    <?php
+
+    foreach ($trainig as $one )
+    {?>
+
+    <p>nom:  <?php  echo  $one->getTitle();?>
+        --><a href=" <?php echo $this->url('training', ['id' =>$one->getId()]); ?>" >Details</a>
+
+    </p>
+
+
+
+
+
+<?php };?>

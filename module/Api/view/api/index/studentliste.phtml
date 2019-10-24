@@ -1,0 +1,21 @@
+
+<div class="jumbotron">
+
+    <p><a class="btn btn-success pull-right" href="<?php  echo $this->url('home'); ?>" >Acceil</a></p>
+    <p>liste des etudiants: </p>
+    <?php
+
+    foreach ($students as $one )
+    {?>
+
+        <p>nom:  <?php  echo  $one->getNom();?>
+            --><a href=" <?php echo $this->url('student', ['id' =>$one->getId()]); ?>" >Details</a>
+
+        </p>
+
+
+
+
+
+    <?php };?>
+
